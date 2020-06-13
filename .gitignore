@@ -32,3 +32,5 @@ typings/
 
 *.tgz
 webpack.config.js
+
+myapp/
