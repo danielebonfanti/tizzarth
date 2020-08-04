@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pizza App</ion-title>
+    <ion-searchbar placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let pizza of pizzas">
+    <ion-card-header>
+      <ion-card-title>pizza.name</ion-card-title>
+      <ion-card-content>
+        <span *ngFor="let ingr of pizza.ingredients">ingr</span>
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addPizza()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
