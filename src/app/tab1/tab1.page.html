@@ -1,8 +1,13 @@
-<ion-header colo>
-  <ion-select interface="popover" placeholder="Select One">
-    <ion-select-option value="f">Female</ion-select-option>
-    <ion-select-option value="m">Male</ion-select-option>
-  </ion-select>
+<ion-header>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col text-center>
+      <ion-select interface="popover" placeholder="Select one" (click)="selectPizzeria()">
+        <ion-select-option *ngFor="let item of pizzerias" value="item.name">{{item.name}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
 </ion-header>
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let pizza of pizzas">
@@ -14,7 +19,7 @@
     </ion-card-header>
   </ion-card>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addPizza()">
+    <ion-fab-button>
       <ion-icon name="search"></ion-icon>
     </ion-fab-button>
   </ion-fab>

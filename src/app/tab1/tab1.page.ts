@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Pizza } from '../models/pizza';
 import { PizzaService } from './pizza.service';
+import { Pizzeria } from '../models/pizzeria';
 
 @Component({
   selector: 'app-tab1',
@@ -9,16 +10,27 @@ import { PizzaService } from './pizza.service';
 })
 export class Tab1Page {
   pizzas: Pizza[];
+  pizzerias: Pizzeria[];
+  selectedPizzeria: Pizzeria;
 
   constructor(private readonly pizzaService: PizzaService) {
     this.retrievePizzas();
+  }
+
+  retrievePizzerias() {
+    this.pizzerias = this.pizzaService.retrievePizzerias();
   }
 
   retrievePizzas() {
     this.pizzas = this.pizzaService.retrievePizzas();
   }
 
-  addPizza() {
-    console.log('Aggiungiamo una nuova pizza!')
+  selectPizzeria(pizzeria: Pizzeria) {
+    this.selectedPizzeria = pizzeria;
   }
+
+  // addPizza() {
+  //   console.log('Aggiungiamo una nuova pizza!');
+  // }
+
 }
