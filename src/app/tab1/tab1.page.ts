@@ -14,11 +14,11 @@ export class Tab1Page {
   selectedPizzeria: Pizzeria;
 
   constructor(private readonly pizzaService: PizzaService) {
-    this.retrievePizzas();
+    this.retrievePizzerias();
   }
 
   retrievePizzerias() {
-    this.pizzerias = this.pizzaService.retrievePizzerias();
+    this.pizzaService.retrievePizzerias().subscribe(response => this.pizzerias = response);
   }
 
   retrievePizzas() {
