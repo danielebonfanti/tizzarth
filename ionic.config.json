@@ -1,5 +1,7 @@
 {
   "name": "tizzarth",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
