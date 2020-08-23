@@ -10,7 +10,7 @@ export class PizzaService {
     constructor(private http: HttpClient) {}
 
     retrievePizzas() {
-        return new Array<Pizza>();
+        return this.http.get<Pizza[]>('https://localhost:5001/api/Pizzas');
     }
 
     retrievePizzerias(): Observable<Pizzeria[]> {

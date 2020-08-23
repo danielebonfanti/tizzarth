@@ -15,6 +15,7 @@ export class Tab1Page {
 
   constructor(private readonly pizzaService: PizzaService) {
     this.retrievePizzerias();
+    this.retrievePizzas();
   }
 
   retrievePizzerias() {
@@ -22,7 +23,7 @@ export class Tab1Page {
   }
 
   retrievePizzas() {
-    this.pizzas = this.pizzaService.retrievePizzas();
+    this.pizzaService.retrievePizzas().subscribe(response => this.pizzas = response);
   }
 
   selectPizzeria(pizzeria: Pizzeria) {
