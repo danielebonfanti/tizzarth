@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Pizza } from '../models/pizza';
 import { PizzaService } from './pizza.service';
 import { Pizzeria } from '../models/pizzeria';
+import { ModalController } from '@ionic/angular';
+import { SearchPage } from '../search/search.page';
 
 @Component({
   selector: 'app-tab1',
@@ -11,27 +13,35 @@ import { Pizzeria } from '../models/pizzeria';
 export class Tab1Page {
   pizzas: Pizza[];
   pizzerias: Pizzeria[];
-  selectedPizzeria: Pizzeria;
+  selectedPizzeria: Pizzeria = new Pizzeria();
 
-  constructor(private readonly pizzaService: PizzaService) {
+  constructor(
+    private readonly pizzaService: PizzaService,
+    public modalController: ModalController
+  ) {
     this.retrievePizzerias();
-    this.retrievePizzas();
   }
 
   retrievePizzerias() {
     this.pizzaService.retrievePizzerias().subscribe(response => this.pizzerias = response);
-  }
-
-  retrievePizzas() {
-    this.pizzaService.retrievePizzas().subscribe(response => this.pizzas = response);
+    if (this.pizzerias) {
+      this.selectedPizzeria = this.pizzerias[0];
+      this.pizzas = this.pizzerias[0].pizzas;
+    }
   }
 
   selectPizzeria(pizzeria: Pizzeria) {
     this.selectedPizzeria = pizzeria;
   }
 
-  // addPizza() {
-  //   console.log('Aggiungiamo una nuova pizza!');
-  // }
+  async openSearch() {
+    const modal = await this.modalController.create({
+      component: SearchPage,
+      componentProps: {
+        pizzas: this.selectedPizzeria.pizzas
+      }
+    });
+    return await modal.present();
+  }
 
 }
