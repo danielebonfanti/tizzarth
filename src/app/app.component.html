@@ -1,14 +1,22 @@
 <ion-app>
   <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar>
         <ion-title>PizzApp</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item (click)="openAddPizzaPage()">Add new Pizza</ion-item>
-        <ion-item (click)="openAddPizzeriaPage()">Add new Pizzeria</ion-item>
+        <ion-item>
+          <ion-menu-toggle>
+            <ion-button fill="clear" [routerLink]="'/add-pizza'">Add new Pizza</ion-button>
+          </ion-menu-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-menu-toggle>
+            <ion-button fill="clear" [routerLink]="'/add-pizzeria'">Add new Pizzeria</ion-button>
+          </ion-menu-toggle>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
